@@ -1,0 +1,27 @@
+version: '3.9'
+
+networks:
+    apimatemapnet:
+
+services:
+  PostgresDb:
+    container_name: PostgresContainer
+    image: postgres
+    ports:
+        - "5432:5432"
+    environment:
+        - POSTGRES_USER=thiago
+        - POSTGRES_PASSWORD=thiago@123
+        - POSTGRES_DB=MateMap
+    networks:
+        - apimatemapnet
+
+  apimatemap:
+    container_name: apimatemap
+    image: thiagocleite91/apimatemap
+    ports:
+        - 8080:80
+    depends_on:
+        - PostgresDb
+    networks:
+        - apimatemapnet
