@@ -20,7 +20,7 @@ services:
     container_name: apimatemap
     image: thiagocleite91/apimatemap
     ports:
-        - 8080:80
+        - 8080:8080
     depends_on:
         - PostgresDb
     networks:
