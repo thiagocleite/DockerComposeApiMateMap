@@ -4,17 +4,28 @@ networks:
     apimatemapnet:
 
 services:
-  PostgresDb:
-    container_name: PostgresContainer
-    image: postgres
+  SqlServerDb:
+    container_name: SqlServerContainer
+    image: mcr.microsoft.com/mssql/server:2022-latest
     ports:
-        - "5432:5432"
+        - 1433:1433
     environment:
-        - POSTGRES_USER=thiago
-        - POSTGRES_PASSWORD=thiago@123
-        - POSTGRES_DB=MateMap
+        - ACCEPT_EULA=Y
+        - MSSQL_SA_PASSWORD=thiago@123
     networks:
         - apimatemapnet
+
+#   PostgresDb:
+#     container_name: PostgresContainer
+#     image: postgres
+#     ports:
+#         - "5432:5432"
+#     environment:
+#         - POSTGRES_USER=thiago
+#         - POSTGRES_PASSWORD=thiago@123
+#         - POSTGRES_DB=MateMap
+#     networks:
+#         - apimatemapnet
 
   apimatemap:
     container_name: apimatemap
